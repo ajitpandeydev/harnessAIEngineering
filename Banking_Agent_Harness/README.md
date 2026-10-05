@@ -25,14 +25,14 @@
  Instead:
 
  1. The LLM interprets the request.
-2. Python code validates the request.
-3. Business policies determine whether the request is allowed.
-4. An allowed transfer is staged as `PENDING_CONFIRMATION`.
-5. A separate confirmation step is required.
-6. Deterministic transaction-execution code performs the transfer.
-7. The actual transaction outcome is reported.
-8. Important actions are written to an audit log.
-9. Tool-call and transfer-attempt limits prevent uncontrolled retries.
+ 2. Python code validates the request.
+ 3. Business policies determine whether the request is allowed.
+ 4. An allowed transfer is staged as `PENDING_CONFIRMATION`.
+ 5. A separate confirmation step is required.
+ 6. Deterministic transaction-execution code performs the transfer.
+ 7. The actual transaction outcome is reported.
+ 8. Important actions are written to an audit log.
+ 9. Tool-call and transfer-attempt limits prevent uncontrolled retries.
 
  This is the core idea of **Agent Harness Engineering**:
 
@@ -77,16 +77,16 @@
  The project currently contains:
 
  - One Google ADK agent
-- Five banking tools
-- Deterministic policy validation
-- Transfer staging
-- Explicit confirmation before execution
-- Transaction outcome handling
-- Structured audit logging
-- Tool-call limits
-- Transfer-attempt limits
-- Repeated-failure limits
-- In-memory mock banking data
+ - Five banking tools
+ - Deterministic policy validation
+ - Transfer staging
+ - Explicit confirmation before execution
+ - Transaction outcome handling
+ - Structured audit logging
+ - Tool-call limits
+ - Transfer-attempt limits
+ - Repeated-failure limits
+ - In-memory mock banking data
 
  There is **no database and no multi-agent setup**. The project is intentionally kept small so that the harness behavior is easy to understand.
 
@@ -97,11 +97,11 @@
  # 🧰 Technology Stack
 
  - **Python**
-- **Google ADK**
-- **LiteLLM**
-- **OpenAI `gpt-4o-mini`**
-- **In-memory mock banking data**
-- Optional **Streamlit** UI
+ - **Google ADK**
+ - **LiteLLM**
+ - **OpenAI `gpt-4o-mini`**
+ - **In-memory mock banking data**
+ - Optional **Streamlit** UI
 
  No external database is required.
 
@@ -138,12 +138,12 @@ app/services/policy_service.py
  The policy layer checks things such as:
 
  - Does the beneficiary exist?
-- Is the beneficiary name ambiguous?
-- Is the beneficiary blocked?
-- Is the account active?
-- Is the transfer amount positive?
-- Is there enough balance?
-- Has the daily transfer limit been exceeded?
+ - Is the beneficiary name ambiguous?
+ - Is the beneficiary blocked?
+ - Is the account active?
+ - Is the transfer amount positive?
+ - Is there enough balance?
+ - Has the daily transfer limit been exceeded?
 
  The LLM can **request** an action, but Python decides whether that action is permitted.
 
@@ -244,10 +244,10 @@ NEEDS_CLARIFICATION
  Examples include:
 
  - Blocked beneficiary
-- Inactive account
-- Non-positive transfer amount
-- Insufficient balance
-- Daily transfer limit exceeded
+ - Inactive account
+ - Non-positive transfer amount
+ - Insufficient balance
+ - Daily transfer limit exceeded
 
  The response contains the reason for rejection.
 
@@ -342,8 +342,8 @@ adk web
  The audit system intentionally does **not** log:
 
  - API keys
-- Secrets
-- Chain-of-thought
+ - Secrets
+ - Chain-of-thought
 
  The goal is to make important agent actions observable without exposing sensitive information.
 
